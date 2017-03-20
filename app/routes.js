@@ -1,10 +1,21 @@
 'use strict';
 
+const passport = require('passport');
 const express = require('express');
 const router = express.Router();
-const path = require('path');
 
 
+const AuthController = require('./controllers/authController');
+passport.use(AuthController.AuthStrategy);
+
+// Auth Endpoints
+//================================================
+router.get('/auth', AuthController.login);
+
+
+// Authentication methods required
+//================================================
+router.use(passport.authenticate('bearer', { session: false }));
 
 // Usuarios
 //================================================
@@ -14,6 +25,5 @@ const path = require('path');
 // router.post('/user', UserController.add);
 // router.delete('/user/:id', UserController.remove);
 // router.put('/user', UserController.edit);
-
 
 module.exports = router;

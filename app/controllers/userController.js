@@ -1,6 +1,6 @@
 'use strict';
 
-let User = require("../models/models").User;
+let User = require("../models/user");
 
 
 //Get - Retorna os dados do usuario da sessao

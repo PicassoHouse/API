@@ -1,9 +1,6 @@
 'use strict';
 
-const Api = require('./routes.js');
-
 module.exports = (app) => {
-
 
     //Logs
     //==========================================
@@ -27,13 +24,9 @@ module.exports = (app) => {
     });
 
 
-    //Default
-    //==========================================
-    //app.use('/', require('./route.default'));
-
     //Api
     //==========================================
-    app.use('/api', Api);
+    app.use('/api', require('./routes.js'));
 
 
     //Errors
