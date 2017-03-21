@@ -10,8 +10,7 @@ passport.use(AuthController.AuthStrategy);
 
 // Auth Endpoints
 //================================================
-router.get('/auth', AuthController.login);
-
+router.post('/auth', AuthController.login);
 
 // Authentication methods required
 //================================================
@@ -19,11 +18,10 @@ router.use(passport.authenticate('bearer', { session: false }));
 
 // Usuarios
 //================================================
-// let UserController = require('./controllers/userController.js');
-// router.get('/user', UserController.list);
-// router.get('/user/:id', UserController.get);
-// router.post('/user', UserController.add);
-// router.delete('/user/:id', UserController.remove);
-// router.put('/user', UserController.edit);
+let UserController = require('./controllers/userController.js');
+router.get('/user', UserController.list);
+router.get('/user/:id', UserController.get);
+router.post('/user', UserController.add);
+router.delete('/user/:id', UserController.remove);
 
 module.exports = router;

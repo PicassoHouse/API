@@ -4,6 +4,8 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
+global.configs = require('./configs.json');
+
 const MongoConnector = require('./mongoConnector');
 const Bootstrap = require('./app/bootstrap');
 
@@ -19,13 +21,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Connect to database
 //==============================
-// MongoConnector({
-// 	host		: "localhost", 
-// 	port		: "27017",
-// 	dbname 		: "picasso_db", 
-// 	username	: "", 
-// 	password	: ""
-// });
+MongoConnector({
+	host		: "localhost",
+	port		: "27017",
+	dbname 		: "picasso_db",
+	username	: "",
+	password	: ""
+});
 
 
 //Initialize routes
