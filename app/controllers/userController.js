@@ -51,9 +51,9 @@ exports.add = (req, res) => {
     if(req.user.role !== 'admin')
         return res.sendStatus(400);
 
-    let {username, password, displayName, status, imageUrl, role} = req.body;
+    let {username, password, displayName, imageUrl, role} = req.body;
 
-    User.create({username, password, displayName, status, imageUrl, role})
+    User.create({ username, password, displayName, imageUrl, role })
         .then((user) => res.json(user))
         .catch(err => res.sendStatus(400));
 };

@@ -9,7 +9,7 @@ global.configs = require('./configs.json');
 const MongoConnector = require('./mongoConnector');
 const Bootstrap = require('./app/bootstrap');
 
-var app = express();
+const app = express();
 
 //App Setup
 //==============================
