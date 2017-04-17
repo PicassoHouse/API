@@ -6,6 +6,7 @@ let userSchema = new mongoose.Schema({
     username       : { type : String, required: true },
     displayName    : { type : String },
     password       : { type : String, trim:true , bcrypt: true },
+    auth_code      : { type : String, trim:true , bcrypt: true, required: true },
     access_token   : { type : String, default: "" }, //access_token
     imageUrl       : { type : String, default: ""},
     role           : { type: String, enum: ['admin', 'user', 'guest'], required: true}

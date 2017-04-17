@@ -3,11 +3,11 @@
 let User = require("../models/user");
 
 
-//Get - Retorna os dados do usuario da sessao
+//Get - get session user info
 //========================================
 exports.get = (req,res) => {
 
-    //apenas admin pode buscar qualquer usuario
+    //only admins can find any user
     if(req.user._id !== req.params.id && req.user.role !== 'admin')
         return res.sendStatus(400);
 
@@ -17,7 +17,7 @@ exports.get = (req,res) => {
 };
 
 
-//Get List - Retorna lista de usuarios cadastrados
+//Get List - list registered users
 //========================================
 exports.list = (req,res) => {
 
@@ -30,11 +30,11 @@ exports.list = (req,res) => {
         .catch(err => res.sendStatus(400));
 };
 
-//Delete - Desativa o usuario da sessao
+//Delete - delete users
 //========================================
 exports.remove = (req,res) => {
 
-    //apenas admin pode excluir outros usuarios
+    //only admins can delete users
     if(req.user.role !== 'admin')
         return res.sendStatus(400);
 
@@ -43,17 +43,17 @@ exports.remove = (req,res) => {
         .catch(err => res.sendStatus(400));
 };
 
-// Add - Regitra novos usuarios
+// Add - add users
 //========================================
 exports.add = (req, res) => {
 
-    //apenas admin pode registrar outros usuarios
+    //only admins can add user
     if(req.user.role !== 'admin')
         return res.sendStatus(400);
 
-    let {username, password, displayName, imageUrl, role} = req.body;
+    let {username, password, displayName, imageUrl, role, auth_code} = req.body;
 
-    User.create({ username, password, displayName, imageUrl, role })
+    User.create({ username, password, displayName, imageUrl, role , auth_code})
         .then((user) => res.json(user))
         .catch(err => res.sendStatus(400));
 };
