@@ -21,7 +21,7 @@ exports.get = (req,res) => {
 //========================================
 exports.list = (req,res) => {
 
-    const params = req.user.role == 'admin'
+    const params = req.user.role === 'admin'
         ? {}
         : { _id : req.user._id };
 
