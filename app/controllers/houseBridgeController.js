@@ -28,6 +28,8 @@
 //========================================
 exports.hasDetectedPresence = (req,res) => {
     //TODO: this method should be called when detect Presence in room
+    //should update light status for room_id
+    //should add LightHistory log
 };
 
 // hasDetectedRain
@@ -37,9 +39,12 @@ exports.hasDetectedRain = (req,res) => {
 };
 
 // hasReceivedAuthCode : called when receive AuthCode from membrana keyboard
+// @param req.param.auth_code : String
 //========================================
-exports.hasDetectedRain = (req,res) => {
-    //TODO: this method should be called when detect rain
+exports.hasReceivedAuthCode = (req,res) => {
+    //TODO: should auth user by auth_code and verify if user have permission to access house
+    // if user have permission to access the house and house is locked then set house unlocked
+    //if user have permission to access then should add operation to AccessHistory
 };
 
 
