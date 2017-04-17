@@ -25,12 +25,28 @@ exports.listLightHistory = (req,res) => {
 //========================================
 exports.listMonthReports = (req,res) => {
     //TODO: list lasted 6 months data to put in the chart
-    res.json([])
+
+    let reports = [
+        { label: 'dec', value : 27 },
+        { label: 'jan', value : 29 },
+        { label: 'feb', value : 33 },
+        { label: 'mar', value : 30 },
+        { label: 'apr', value : 28 },
+        { label: 'may', value : 31 }
+    ];
+
+    res.json(reports)
 };
 
 //Get month reports - report from lasted 6 months
 //========================================
 exports.getMonthReports = (req,res) => {
     //TODO: get info from req.param.month
-    res.json([])
+
+    let monthReport = {
+        hoursOn : 256,
+        hoursOff : 128
+    };
+
+    res.json(monthReport)
 };
