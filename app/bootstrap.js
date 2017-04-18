@@ -16,11 +16,10 @@ module.exports = (app) => {
         res.header("Access-Control-Allow-Headers", "X-Access-Token,Access-Token,Keep-Alive,User-Agent,Content-Type, Authorization");
         res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE, OPTIONS");
         res.header("Access-Control-Allow-Credentials", "true");
-        if ('OPTIONS' === req.method) {
-            res.sendStatus(200);
-        } else {
-            next();
-        }
+        next();
+    });
+    app.options('*', function(req, res) {
+        res.send(200);
     });
 
 
