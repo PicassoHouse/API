@@ -1,3 +1,4 @@
 {
-  "JWT_KEY" : "asdfg12345"
+  "JWT_KEY" : "asdfg12345",
+  "MASTER_AUTH_CODE" : "123456"
 }
