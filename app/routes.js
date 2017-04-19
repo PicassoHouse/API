@@ -11,7 +11,7 @@ const UserController = require('./controllers/userController');
 // Only support can use this endpoint
 // For use this method, should be request sending req.body.auth 
 //=======================================
-router.post('/user', (req, res, next) => {
+router.post('/users', (req, res, next) => {
 	if(req.body.auth_code == global.configs.MASTER_AUTH_CODE){
 		req.user = {
 			isMasterUser : true,
@@ -37,9 +37,9 @@ router.use(passport.authenticate('bearer', { session: false }));
 
 // Usuarios
 //================================================
-router.get('/user', UserController.list);
-router.get('/user/:id', UserController.get);
-router.post('/user', UserController.add);
-router.delete('/user/:id', UserController.remove);
+router.get('/users', UserController.list);
+router.get('/users/:id', UserController.get);
+router.post('/users', UserController.add);
+router.delete('/users/:id', UserController.remove);
 
 module.exports = router;
