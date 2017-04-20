@@ -11,14 +11,13 @@ const UserController = require('./controllers/userController');
 // Only support can use this endpoint
 // For use this method, should be request sending req.body.auth 
 //=======================================
-router.post('/users', (req, res, next) => {
+router.post('/users/master', (req, res, next) => {
 	if(req.body.auth_code == global.configs.MASTER_AUTH_CODE){
 		req.user = {
 			isMasterUser : true,
 			auth_code : req.params.auth_code,
 			role : 'admin'
 		};
-		next();
 	} else {
 		res.sendStatus(401);
 	}
