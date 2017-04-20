@@ -38,6 +38,13 @@ exports.remove = (req,res) => {
     if(req.user.role !== 'admin')
         return res.sendStatus(400);
 
+    if(req.user._id == req.params.id) {
+        return res.status(400).json({
+            success: false, 
+            message: 'Não é possível remover o seu próprio usuário!'
+        });
+    }
+
     User.remove({ _id : req.params.id })
         .then(() => res.sendStatus(200))
         .catch(err => res.sendStatus(400));
