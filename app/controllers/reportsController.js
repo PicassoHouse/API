@@ -7,6 +7,10 @@ const AccessHistory = require("../models/accessHistory");
 //========================================
 exports.listAccessHistory = (req,res) => {
     AccessHistory.find({})
+        .populate({
+            path : 'user',
+            select: 'username displayName -_id'
+        })
         .then(docs => res.json(docs))
         .catch(err => res.sendStatus(400));
 };
@@ -23,16 +27,16 @@ exports.listLightHistory = (req,res) => {
 
 //Get month reports - report from lasted 6 months
 //========================================
-exports.listMonthReports = (req,res) => {
+exports.listMonthtLightReports = (req,res) => {
     //TODO: list lasted 6 months data to put in the chart
 
     let reports = [
-        { label: 'dec', value : 27 },
-        { label: 'jan', value : 29 },
-        { label: 'feb', value : 33 },
-        { label: 'mar', value : 30 },
-        { label: 'apr', value : 28 },
-        { label: 'may', value : 31 }
+        { label: 'Dezembro', value : 27 },
+        { label: 'Janeiro', value : 29 },
+        { label: 'Fevereiro', value : 33 },
+        { label: 'Março', value : 30 },
+        { label: 'Abril', value : 28 },
+        { label: 'Maio', value : 31 }
     ];
 
     res.json(reports)
@@ -40,12 +44,12 @@ exports.listMonthReports = (req,res) => {
 
 //Get month reports - report from lasted 6 months
 //========================================
-exports.getMonthReports = (req,res) => {
+exports.getCurrentMonthLightInfo = (req,res) => {
     //TODO: get info from req.param.month
 
     let monthReport = {
-        hoursOn : 256,
-        hoursOff : 128
+        hoursOn : 356,
+        hoursOff : 158
     };
 
     res.json(monthReport)

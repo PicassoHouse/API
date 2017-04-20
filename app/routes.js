@@ -6,7 +6,7 @@ const router = express.Router();
 
 const AuthController = require('./controllers/authController');
 const UserController = require('./controllers/userController');
-
+const ReportsController = require('./controllers/reportsController');
 
 // Only support can use this endpoint
 // For use this method, should be request sending req.body.auth 
@@ -40,5 +40,14 @@ router.get('/users', UserController.list);
 router.get('/users/:id', UserController.get);
 router.post('/users', UserController.add);
 router.delete('/users/:id', UserController.remove);
+
+
+// Reports
+//================================================
+router.get('/reports/accesshistory', ReportsController.listAccessHistory);
+router.get('/reports/lightshistory', ReportsController.listLightHistory);
+router.get('/reports/monthlighthistory', ReportsController.listMonthtLightReports);
+router.get('/reports/currentmonthlightinfo', ReportsController.getCurrentMonthLightInfo);
+
 
 module.exports = router;
