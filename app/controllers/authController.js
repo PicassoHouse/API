@@ -22,10 +22,10 @@ exports.login = (req, res, next) => {
     let { username, password } = req.body;
 
     User.auth(username, password, (err, user) => {
-        if (err) return res.json({success : false, message : "Usuário ou Senha Inválidos"});
+        if (err) return res.json("");
 
         let access_token = user.access_token;
-        res.json({ success: true, access_token });
+        res.json(access_token);
     });
 };
 
