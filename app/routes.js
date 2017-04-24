@@ -7,6 +7,8 @@ const router = express.Router();
 const AuthController = require('./controllers/authController');
 const UserController = require('./controllers/userController');
 const ReportsController = require('./controllers/reportsController');
+const RoomController = require('./controllers/roomController');
+const HouseController = require('./controllers/houseBridgeController');
 
 // Only support can use this endpoint
 // For use this method, should be request sending req.body.auth 
@@ -48,6 +50,19 @@ router.get('/reports/accesshistory', ReportsController.listAccessHistory);
 router.get('/reports/lightshistory', ReportsController.listLightHistory);
 router.get('/reports/monthlighthistory', ReportsController.listMonthtLightReports);
 router.get('/reports/currentmonthlightinfo', ReportsController.getCurrentMonthLightInfo);
+
+
+// Rooms
+//================================================
+router.get('/rooms', RoomController.listRooms);
+
+// House Bridge
+//================================================
+router.get('/house', HouseController.getHouseInfo);
+router.post('/house/turnlighton', HouseController.turnLightOn);
+router.post('/house/openGarage', HouseController.openGarage);
+router.post('/house/openWindows', HouseController.openWindows);
+router.post('/house/lockHouse', HouseController.lockHouse);
 
 
 module.exports = router;

@@ -58,6 +58,7 @@ exports.hasReceivedAuthCode = (req,res) => {
 //========================================
 exports.turnLightOn = (req,res) => {
     //TODO: should turn light On/Off
+    res.sendStatus(200);
 };
 
 // open garage
@@ -65,14 +66,15 @@ exports.turnLightOn = (req,res) => {
 //========================================
 exports.openGarage = (req,res) => {
     //TODO: should open/close garage
+    res.sendStatus(200);
 };
 
 // openWindow
-// @param req.param.room_id : String
 // @param req.param.open : Boolean | true if is to open the window and false otherwise
 //========================================
-exports.openWindow = (req,res) => {
+exports.openWindows = (req,res) => {
     //TODO: should lock/unlock house
+    res.sendStatus(200);
 };
 
 // lockHouse
@@ -80,5 +82,14 @@ exports.openWindow = (req,res) => {
 //========================================
 exports.lockHouse = (req,res) => {
     //TODO: should lock/unlock house
+};
+
+// GET getHouseInfo
+//========================================
+exports.getHouseInfo = (req,res) => {
+    res.json({
+        owner : {_id: 'asdf', displayName: "Antony Alkmim", username: "antonyalkmim"},
+        isLocked : true
+    });
 };
 

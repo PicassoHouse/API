@@ -2,6 +2,7 @@ let mongoose = require('mongoose');
 
 let roomSchema = new mongoose.Schema({
     title       : { type : String, required: true },
+    description	: { type : String },
     type        : { type : String, enum: ['bedroom', 'livingroom', 'kitchen', 'garage', 'bathroom'], required: true },
     isLightOn   : { type : Boolean, required: true }
 });
