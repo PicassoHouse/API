@@ -38,6 +38,7 @@ router.use(passport.authenticate('bearer', { session: false }));
 
 // Usuarios
 //================================================
+router.get('/users/current', UserController.currentUser);
 router.get('/users', UserController.list);
 router.get('/users/:id', UserController.get);
 router.post('/users', UserController.add);

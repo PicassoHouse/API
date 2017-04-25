@@ -5,6 +5,10 @@ let User = require("../models/user");
 
 //Get - get session user info
 //========================================
+exports.currentUser = (req,res) => res.json(req.user);
+
+//Get - get session user info
+//========================================
 exports.get = (req,res) => {
 
     //only admins can find any user
