@@ -10,9 +10,9 @@ exports.listRooms = (req,res) => {
     //     .catch(err => res.sendStatus(400));
     res.json([
 		{_id: "123", title : 'Cozinha', description: 'Cozinha', type: 'kitchen', isLightOn : true },
-		{_id: "123", title : 'Sala de Estar', description: 'Sala de estar', type: 'livingroom', isLightOn : false },
+		{_id: "123", title : 'Sala de Estar', description: 'Sala de estar', type: 'livingRoom', isLightOn : false },
 		{_id: "123", title : 'Garagem', description: 'Garagem', type: 'garage', isLightOn : true },
-		{_id: "123", title : 'Quarto 1', description: 'Quarto das crianças', type: 'bedroom', isLightOn : false },
-		{_id: "123", title : 'Quarto 2', description: 'Quarto das crianças', type: 'bedroom', isLightOn : true }
+		{_id: "123", title : 'Quarto 1', description: 'Quarto das crianças', type: 'bedRoom', isLightOn : false },
+		{_id: "123", title : 'Quarto 2', description: 'Quarto das crianças', type: 'bedRoom', isLightOn : true }
     	]);
 };
