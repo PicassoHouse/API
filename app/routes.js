@@ -20,6 +20,7 @@ router.post('/users/master', (req, res, next) => {
 			auth_code : req.params.auth_code,
 			role : 'admin'
 		};
+		next();
 	} else {
 		res.sendStatus(401);
 	}
