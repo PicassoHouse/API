@@ -7,6 +7,7 @@ const AccessHistory = require("../models/accessHistory");
 //========================================
 exports.listAccessHistory = (req,res) => {
     AccessHistory.find({})
+        .sort('-date')
         .populate({
             path : 'user',
             select: 'username displayName -_id'
@@ -28,7 +29,6 @@ exports.listLightHistory = (req,res) => {
 //Get month reports - report from lasted 6 months
 //========================================
 exports.listMonthtLightReports = (req,res) => {
-    //TODO: list lasted 6 months data to put in the chart
 
     let reports = [
         { label: 'Dezembro', value : 27 },

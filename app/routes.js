@@ -10,21 +10,31 @@ const ReportsController = require('./controllers/reportsController');
 const RoomController = require('./controllers/roomController');
 const HouseController = require('./controllers/houseBridgeController');
 
-// Only support can use this endpoint
-// For use this method, should be request sending req.body.auth 
+// Initialize House
+//================================================
+// Inicia a utilizacao da casa.
+// Deve ser enviado os dados referente ao admin da casa
+// {username, password, displayName, imageUrl, role, auth_code}
 //=======================================
-router.post('/users/master', (req, res, next) => {
-	if(req.body.auth_code == global.configs.MASTER_AUTH_CODE){
-		req.user = {
-			isMasterUser : true,
-			auth_code : req.params.auth_code,
-			role : 'admin'
-		};
-		next();
-	} else {
-		res.sendStatus(401);
-	}
-}, UserController.add);
+router.post('/init', (req, res, next) => {
+    if(req.body.auth_code == global.configs.MASTER_AUTH_CODE){
+        req.user = {
+            isMasterUser : true,
+            auth_code : req.params.auth_code,
+            role : 'admin'
+        };
+        next();
+    } else {
+        res.sendStatus(401);
+    }
+}, HouseController.init);
+
+
+// Arduino > API
+//================================================
+router.get('/house/hasDetectedPresence', HouseController.authHouseDevice, HouseController.hasDetectedPresence);
+router.get('/house/hasDetectedRain', HouseController.authHouseDevice, HouseController.hasDetectedRain);
+router.get('/house/hasReceivedAuthCode', HouseController.authHouseDevice, HouseController.hasReceivedAuthCode);
 
 
 passport.use(AuthController.AuthStrategy);
