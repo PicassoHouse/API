@@ -21,6 +21,7 @@ exports.listAccessHistory = (req,res) => {
 //========================================
 exports.listLightHistory = (req,res) => {
     LightHistory.find({})
+        .sort('-date')
         .then(docs => res.json(docs))
         .catch(err => res.sendStatus(400));
 };
