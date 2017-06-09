@@ -47,10 +47,11 @@ exports.init = (req, res, next) => {
                         .catch(err => res.sendStatus(400));
                 });
 
-            Room.create({room_id : 1, title: "Sala de Estar", description: "Sala de visitas", type: 'livingRoom', isLightOn: true });
-            Room.create({room_id : 2, title: "Cozinha", description: "Cozinha", type: 'kitchen', isLightOn: true });
-            Room.create({room_id : 3, title: "Quarto", description: "Quarto", type: 'bedRoom', isLightOn: true });
-            Room.create({room_id : 4, title: "Garagem", description: "Garagem", type: 'garage', isLightOn: true });
+            Room.create({room_id : 1, title: "Sala de Estar", description: "Sala de visitas", type: 'livingRoom', isLightOn: false });
+            Room.create({room_id : 2, title: "Garagem", description: "Garagem", type: 'garage', isLightOn: false });
+            Room.create({room_id : 3, title: "Cozinha", description: "Cozinha", type: 'kitchen', isLightOn: false });
+            Room.create({room_id : 4, title: "Quarto", description: "Quarto", type: 'bedRoom', isLightOn: false });
+            
         })
         .catch(err => res.sendStatus(400));
 
@@ -70,23 +71,24 @@ exports.authHouseDevice = (req, res, next) => {
 
 // hasDetectedPresence
 // @param req.param.room_id : String
+// @param req.param.on : Bool
 //========================================
 exports.hasDetectedPresence = (req,res) => {
 
-    let {room_id} = req.query;
+    let {room_id, on} = req.query;
 
     HouseModel.findOne()
         .then(result => {
             //se detectar presenca e a casa estiver trancada entao devera soar o alarme
-            if (result.isLocked) {
+            if (result.isLocked && on) {
                 //TODO: enviar alerta push pelo aplicativo
                 House.setBuzzerOn(true);
                 return res.sendStatus(200);
             }
 
-            Room.update({room_id: room_id}, {$set : {isLightOn : true}}).then(() => {
-                House.turnLightOn(room_id, true);
-                LightHistory.create({ date: Date.now(), isLightOn: true, room_id : room_id })
+            Room.update({room_id: room_id}, {$set : {isLightOn : on}}).then(() => {
+                House.turnLightOn(room_id, on);
+                LightHistory.create({ date: Date.now(), isLightOn: on, room_id : room_id })
                     .then(h => res.sendStatus(200))
                     .catch(err => res.sendStatus(400));
             });
@@ -173,6 +175,7 @@ exports.lockHouse = (req,res) => {
 //========================================
 exports.getHouseInfo = (req,res) => {
     HouseModel.findOne()
+        .populate('owner')
         .then(result => res.json(result))
         .catch(err => res.sendStatus(400).json(err));
 };
